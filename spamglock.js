@@ -1,4 +1,5 @@
 /**
+ * 
  * Añade una pestaña en Especial:Contribuciones y Especial:ContribucionesBorradas
  * que nos permite bloquear con un solo clic de ratón a cualquier usuario de forma
  * local o global por ser un spambot.
@@ -10,7 +11,8 @@
  * Proyecto personal y en desarrollo; no para su distribución o uso general debido a
  * posibles defectos y/o errores que pueden provocar fallos o acciones no deseadas.
  *
- * Copyright (c) 2023 MarcoAurelioWM. All Rights Reserved
+ * Copyright (c) 2023 MarcoAurelioWM. All Rights Reserved.
+ * 
  */ 
 
 $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.ForeignApi' ] ), $.ready ).then(
@@ -53,7 +55,7 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.Foreign
 			autoblock: '1',
 			noemail: '1',
 		}).done( function () {
-			mw.notify($("<span><b>" + target2 + " ha sido bloqueado.</b>\nLa página se recargará en 10 segundos.</span>"));
+			mw.notify($("<span><b>" + target2 + " ha sido bloqueado.</b> La página se recargará en 10 segundos.</span>"));
 		}).done ( function () {
 			setTimeout(window.location.reload.bind(window.location), 10000);
 		});
@@ -69,7 +71,7 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.Foreign
 			hidden: '',
 			reason: 'Spam-only account: spambot'
 		}).done( function () {
-			mw.notify($("<span><b>" + target3 + " ha sido bloqueado globalmente.</b>\nLa página se recargará en 10 segundos.</span>"));
+			mw.notify($("<span><b>" + target3 + " ha sido bloqueado globalmente.</b> La página se recargará en 10 segundos.</span>"));
 		}).done ( function () {
 			setTimeout(window.location.reload.bind(window.location), 10000);
 		});
