@@ -1,11 +1,8 @@
 /**
- * Añade dos pestañas en las páginas especiales de contribuciones y de
- * contribuciones borradas que permite a los usuarios con los permisos
- * adecuados bloquear tanto local como globalmente a una cuenta como
- * "Spambot". El script no se muestra en la página de contribuciones de
- * direcciones IP ni tampoco en la página de contribuciones del propio
- * usuario, para evitar accidentes. Antes de ejecutar cualquiera de las
- * acciones, el usuario debe aceptar un diálogo de confirmación.
+ * Añade una pestaña en Especial:Contribuciones y Especial:ContribucionesBorradas
+ * que nos permite bloquear local o globalmente a un usuario como spambot.
+ *
+ * Copyright (c) 2023 MarcoAurelioWM. All Rights Reserved
  */ 
 
 $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.ForeignApi' ] ), $.ready ).then(
@@ -20,21 +17,19 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.Foreign
 	}
 	
 	$( sb_block ).click( function () {
-		if (!confirm ('Confirm LOCAL BLOCK?')) {
+		if (!confirm ("¿Quieres bloquear localmente a " + target1 +" como spambot?")) {
 			return false;
 		} else {
-		doBlockSpambot( true );
-		doGlobalLockSpambot ( false );
+		doBlockSpambot();
 		console.log("block button works");
 		}
 	} );
 	
 	$( sb_glock ).click( function () {
-		if (!confirm ('Confirm GLOBAL LOCK?')) {
+		if (!confirm ("¿Quieres bloquear globalmente a "+ target1 +" como spambot?")) {
 			return false;
 		} else {
-		doBlockSpambot( false );
-		doGlobalLockSpambot ( true );
+		doGlobalLockSpambot ();
 		console.log("global lock button works");
 		}
 	} );
@@ -50,7 +45,9 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.Foreign
 			autoblock: '1',
 			noemail: '1',
 		}).done( function () {
-			location.reload();
+			mw.notify($("<span><b>" + target2 + " ha sido bloqueado.</b>\nLa página se recargará en 10 segundos.</span>"));
+		}).done ( function () {
+			setTimeout(window.location.reload.bind(window.location), 10000);
 		});
 	}
 	
@@ -64,7 +61,9 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util', 'mediawiki.Foreign
 			hidden: '',
 			reason: 'Spam-only account: spambot'
 		}).done( function () {
-			location.reload();
+			mw.notify($("<span><b>" + target3 + " ha sido bloqueado globalmente.</b>\nLa página se recargará en 10 segundos.</span>"));
+		}).done ( function () {
+			setTimeout(window.location.reload.bind(window.location), 10000);
 		});
 	}
 });
