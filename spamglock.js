@@ -1,6 +1,14 @@
 /**
  * Añade una pestaña en Especial:Contribuciones y Especial:ContribucionesBorradas
- * que nos permite bloquear local o globalmente a un usuario como spambot.
+ * que nos permite bloquear con un solo clic de ratón a cualquier usuario de forma
+ * local o global por ser un spambot.
+ *
+ * Los botones no aparecerán en la página de contribuciones de direcciones IP ni
+ * tampoco de nuestra propia cuenta, en este último caso por motivos de seguridad.
+ * Además, antes de ejecutar cualquier bloqueo hay que confirmarlo expresamente.
+ *
+ * Proyecto personal y en desarrollo; no para su distribución o uso general debido a
+ * posibles defectos y/o errores que pueden provocar fallos o acciones no deseadas.
  *
  * Copyright (c) 2023 MarcoAurelioWM. All Rights Reserved
  */ 
