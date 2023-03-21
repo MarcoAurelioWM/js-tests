@@ -20,7 +20,7 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util' ] ), $.ready ).then
 		if ( mainPage !== true || page !== 0 ) {
 			qdel_button = mw.util.addPortletLink( 'p-cactions', '#', 'quick delete', 'id-qdel' );
 		} else { return false; }
-		
+	
 	$(qdel_button).click ( function () {
 		doQuickDelete();
 	});
@@ -33,9 +33,9 @@ $.when( mw.loader.using( [ 'mediawiki.api', 'mediawiki.util' ] ), $.ready ).then
 			reason: qd_reason,
 			deletetalk: '1'
 		}).done (function () {
-			console.log ('`page` was quickly deleted');
+			console.log ('`${page}` was quickly deleted; reloading...');
 			window.location.reload();
 		});
 	}
-	
+
 });
